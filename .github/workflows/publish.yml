@@ -1,0 +1,68 @@
+# Publishes n8n-nodes-webhookscheduler to npm, with a provenance statement,
+# every time a version tag (for example 0.2.0) is pushed.
+#
+# n8n only verifies community nodes published from GitHub Actions with npm
+# provenance (required since May 1 2026). Never publish from your laptop.
+#
+# Authentication, pick one:
+#   A. Trusted Publishing (recommended, no secret). Only possible once the
+#      package exists on npm: npmjs.com -> package -> Settings -> Trusted
+#      Publisher -> GitHub Actions, workflow file name "publish.yml".
+#   B. NPM_TOKEN repository secret (needed for the very first publish):
+#      a granular access token, read and write, short expiry. Delete the
+#      secret and the token once Trusted Publishing is set up.
+#
+# Release: bump "version" in package.json and CHANGELOG.md, commit, then
+#   git tag 0.2.0 && git push origin main --tags
+
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Required for the provenance attestation and for Trusted Publishing.
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Node 24 ships npm 11, which supports Trusted Publishing (npm >= 11.5.1).
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Check the tag matches package.json
+        run: |
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$PKG_VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match package.json version $PKG_VERSION"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish with provenance
+        # RELEASE_MODE lets the package's prepublishOnly guard (n8n-node prerelease) pass.
+        run: npm publish --provenance --access public
+        env:
+          RELEASE_MODE: 'true'
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

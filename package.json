@@ -1,0 +1,59 @@
+{
+	"name": "n8n-nodes-webhookscheduler",
+	"version": "0.2.0",
+	"description": "Client for the hosted Webhook Scheduler API: schedule an HTTP request for a future date, then get, list or cancel it, with retries and delivery logs. Usable as an AI Agent tool.",
+	"license": "MIT",
+	"homepage": "https://webhookscheduler.com",
+	"keywords": [
+		"n8n-community-node-package",
+		"webhook",
+		"scheduler",
+		"webhookscheduler",
+		"scheduled http request",
+		"webhook api",
+		"delivery logs",
+		"retries"
+	],
+	"author": {
+		"name": "Webhook Scheduler",
+		"email": "support@webhookscheduler.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/webnztom/n8n-nodes-webhookscheduler.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "n8n-node build && node --test test/*.test.js",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.tsbuildinfo"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/WebhookSchedulerApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/WebhookScheduler/WebhookScheduler.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "0.48.5",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"release-it": "20.2.0",
+		"typescript": "5.9.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}

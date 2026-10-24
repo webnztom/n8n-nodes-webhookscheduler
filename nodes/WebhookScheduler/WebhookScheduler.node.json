@@ -1,0 +1,21 @@
+{
+	"node": "n8n-nodes-webhookscheduler",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Development", "Productivity"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/webnztom/n8n-nodes-webhookscheduler?tab=readme-ov-file#credentials"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/webnztom/n8n-nodes-webhookscheduler?tab=readme-ov-file"
+			},
+			{
+				"url": "https://webhookscheduler.com/docs/api"
+			}
+		]
+	}
+}
