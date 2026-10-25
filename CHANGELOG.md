@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1
+
+- Node icon is now the Webhook Scheduler logo (light and dark variants).
+- Publishing uses npm Trusted Publishing (OIDC); no npm token in the workflow.
+
 ## 0.2.0
 
 - Security: removed the Base URL field from the credential. The API key is only ever sent to `https://webhookscheduler.com` (credential test, request defaults and Cancel by Reference).
