@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+- Codex: the `node` field is now the full node identifier `n8n-nodes-webhookscheduler.webhookScheduler` (n8n verification review).
+
 ## 0.2.1
 
 - Node icon is now the Webhook Scheduler logo (light and dark variants).

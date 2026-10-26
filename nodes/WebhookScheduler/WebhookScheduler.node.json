@@ -1,5 +1,5 @@
 {
-	"node": "n8n-nodes-webhookscheduler",
+	"node": "n8n-nodes-webhookscheduler.webhookScheduler",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Development", "Productivity"],
