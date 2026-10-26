@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+- Re-release of 0.2.2 for the n8n verification re-review. No functional change.
+
 ## 0.2.2
 
 - Codex: the `node` field is now the full node identifier `n8n-nodes-webhookscheduler.webhookScheduler` (n8n verification review).

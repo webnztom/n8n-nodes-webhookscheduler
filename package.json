@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-webhookscheduler",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"description": "Client for the hosted Webhook Scheduler API: schedule an HTTP request for a future date, then get, list or cancel it, with retries and delivery logs. Usable as an AI Agent tool.",
 	"license": "MIT",
 	"homepage": "https://webhookscheduler.com",
